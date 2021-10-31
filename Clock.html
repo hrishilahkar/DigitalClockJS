@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	
+	
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hrishi's Clock</title>
+    
+	<style>
+	
+		*{
+			margin: 0;
+			padding: 0;
+			border: 0;
+		}
+
+		body{
+			background-color: rgba(0, 0, 0, 0.938); 
+			background-repeat: no-repeat;
+		}
+
+		h1{
+			padding: 1%;
+			font-size: 34px;
+			color: #ff9823;
+			text-align: center;
+		}
+
+		.clock_outlook{
+			font-size: 130px;
+			margin: 5px 0 0 0;
+			padding: 10px;
+			color: #ffffff;
+			font-weight: bold;
+			text-align: center;
+		}
+		
+		.date_outlook{
+			font-size: 80px;
+			margin: 5px 0 0 0;
+			padding: 20px;
+			color: #ffffff;
+			font-weight: bold;
+			text-align: center;
+		}
+
+    .date_outlook{
+			font-size: 80px;
+			margin: 5px 0 0 0;
+			padding: 20px;
+			color: #ffffff;
+			font-weight: bold;
+			text-align: center;
+		}
+
+    .dayes_outlook{
+			font-size: 50px;
+			margin: 5px 0 0 0;
+			padding: 20px;
+			color: #ffffff;
+			font-weight: bold;
+			text-align: center;
+		}
+
+
+
+
+		/*-------------------Media Queries----------------------*/
+        @media screen and (max-width: 740px) {
+            
+      body{
+        background-color: rgba(0, 0, 0, 0.938); 
+      }
+
+      h1{
+			padding: 10%;
+			font-size: 24px;
+			color: #ff9823;
+			text-align: center;
+		}
+
+		.clock{
+			font-size: 60px;
+			color: #fff;
+			padding: 0;
+			margin: 4px;
+			
+			border: 4px outset #fff;
+			border-top-right-radius:15px; 
+			border-bottom-left-radius:15px;
+		}
+
+      .date{
+			font-size: 50px;
+			margin: 5px 0 0 0;
+			padding: 20px;
+			color: #ffffff;
+			font-weight: bold;
+			text-align: center;
+		}
+
+      .dayes{
+			font-size: 50px;
+			margin: 5px 0 0 0;
+			padding: 20px;
+			color: #ffffff;
+			font-weight: bold;
+			text-align: center;
+		}
+
+
+
+		}
+	
+	</style>
+  </head>
+
+  <body>
+    <h1>Hrishi's Digital Clock</h1>
+    <!--=====Target area for Time displayed======-->
+    <div id="showTime" class="clock_outlook"></div>
+    <div id="showDate" class="date_outlook"></div>
+	  <div id="showDaysMonths" class="date_outlook"></div>
+    <div id="showDays" class="dayes_outlook"></div>
+
+    <!--=====JavaScript goes Here======-->
+    <script type="text/javascript">
+      function clock() {
+        //Variables and conditions goes from Here....
+        var currentTime = new Date();
+        var meridium = "AM";
+        var h = currentTime.getHours();
+        var m = currentTime.getMinutes();
+        var s = currentTime.getSeconds();
+
+        //Conditionals If, else if....
+        if (h == 0) {
+          h = 12;
+        } else if (h > 12) {
+          h = h - 12;
+          meridium = "PM";
+        }
+
+        if (h < 10) {
+          h = "0" + h;
+        }
+
+        if (m < 10) {
+          m = "0" + m;
+        }
+
+        if (s < 10) {
+          s = "0" + s;
+        }
+        
+		
+		// Time
+		var digitalClock = document.getElementById("showTime");
+        digitalClock.innerText = h + ":" + m + ":" + s + ":" + " " + meridium;
+        setTimeout("clock()", 1000);
+
+		
+		// Calender
+        var d = currentTime.getDate();
+        var mo = currentTime.getMonth();
+        var y = currentTime.getFullYear();
+        const monthNames = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+
+		const daysNames = [
+		  "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednessday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          
+        ];
+
+		var daysName = daysNames[currentTime.getDay()]; 
+		var monthName = monthNames[currentTime.getMonth()]; 
+
+        var curDate = document.getElementById("showDate");
+        curDate.innerText = d + "-" + mo + "-" + y;
+		    var curDaysMonths = document.getElementById("showDaysMonths");
+		    curDaysMonths.innerText = monthName + " "+ d + "," +y;
+
+        var curDaysMonths = document.getElementById("showDays");
+		    curDaysMonths.innerText = daysName;
+
+      }
+      clock();
+    </script>
+  </body>
+</html>
